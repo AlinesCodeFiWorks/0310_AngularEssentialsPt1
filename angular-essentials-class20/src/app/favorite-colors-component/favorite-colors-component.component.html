@@ -1,2 +1,11 @@
-<p>favorite-colors-component works!</p>
-<app-favorite-colors-component></app-favorite-colors-component>
+<app-favorite-colors-component>
+  @for (color of favoriteColors(); track $index) {
+  <li>{{ color }}</li>
+  }
+  <input
+    type="text"
+    placeholder="submit new favorite color"
+    [value]="newColor"
+  />
+  <input type="submit" (click)="addNewColor(newColor)" />
+</app-favorite-colors-component>

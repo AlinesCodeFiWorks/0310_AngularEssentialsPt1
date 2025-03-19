@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 
 @Component({
   selector: 'app-favorite-colors-component',
@@ -7,9 +7,13 @@ import { Component } from '@angular/core';
   styleUrl: './favorite-colors-component.component.css',
 })
 export class FavoriteColorsComponentComponent {
-  favoriteColors = ['red', 'blue', 'green'];
-  addNewColor(newColor: string): string[] {
-    this.favoriteColors.push(newColor);
-    return this.favoriteColors;
+  favoriteColors = signal<string[]>(['red', 'blue', 'green']);
+  newColor = '';
+  addNewColor(newColor: string): void {
+    this.favoriteColors.update((favoriteColors) => [
+      ...favoriteColors,
+      newColor,
+    ]);
+    console.log(this.favoriteColors);
   }
 }
